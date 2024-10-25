@@ -1,0 +1,239 @@
+
+
+select {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  outline: none;
+}
+
+select {
+  background-color: white;
+  color: #333;
+  appearance: none; /* For removing default arrow in some browsers */
+}
+
+select:focus,
+input:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Adjust dropdown arrow (optional) */
+select {
+  background-image: url('data:image/svg+xml;base64,<your-svg-icon>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+
+
+
+/* ++++++++++++++++++++++ */
+
+.svg-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+
+   /* Login Container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  padding: 20px;
+  flex-direction: column;
+}
+
+/* Login Box */
+.login-box {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Sign Up Card */
+.signup-card {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+h1, h2 {
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 24px;
+}
+
+/* Input Group */
+.input-group {
+  margin-bottom: 20px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .svg-button {
+  
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .signup-button {
+    background-color: #28A745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+
+
+
+  .svg-button:hover {
+    background-color: #0056b3;
+  }
+
+
+
+
+
+
+/* Sign Up Message */
+.signup-message {
+  margin-top: 20px;
+}
+
+.signup-message p {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+
+
+.signup-button:hover {
+  background-color: #218838;
+}
+
+/* Back to Login Button */
+.back-to-login-button {
+  margin-top: 20px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-to-login-button:hover {
+  background-color: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .login-box, .signup-card {
+    padding: 20px;
+  }
+
+  h1, h2 {
+    font-size: 20px;
+  }
+
+  input {
+    padding: 10px;
+    font-size: 14px;
+  }
+  .svg-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  
+  }
+
+  .form-container {
+    flex: 1; /* Allows the form to grow and fill space */
+}
+
+.forgot-password {
+    margin-top: 10px; /* Space above the link */
+    text-align: right; /* Align the text to the right */
+}
+
+.forgot-password a {
+    color: blue; /* Change color to blue or whatever fits your theme */
+    text-decoration: underline; /* Underline for better visibility */
+}
+
+
+  .svg-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+
+
+
+
+
+
