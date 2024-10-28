@@ -17,6 +17,13 @@ export class ApiserviceService {
 
 
 
+  login(username: string, password: string): Observable<any> {
+    const body = { username, password };
+    console.log("api called",username, password);
+    
+    return this.http.post(this.apiURL+'login', body);
+  }
+
   reset_Password(token: string, email: string, password: string): Observable<any> {
     const body = { token, email, password };
     console.log("api called", token, email, password);

@@ -1,6 +1,8 @@
-<!-- app.component.html -->
-<app-header></app-header>
-<div class="content">
-  <!-- Your main content goes here -->
-  <router-outlet></router-outlet> <!-- If using Angular routing -->
+<!-- <app-header></app-header> -->
+<div class="container">
+ <app-sidebar (onToggleSideNav)="onToggleSideNav($event)"></app-sidebar> <!-- Add your sidebar component -->
+  <div class="content">
+    <!-- <router-outlet></router-outlet>  -->
+     <app-header></app-header>
+  </div>
 </div>

@@ -4,7 +4,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: #4285f4; /* Change this to your desired color */
-    color: white;
+    color: rgb(123, 142, 0);
     padding: 10px 20px;
   }
   
@@ -48,5 +48,14 @@
       margin-left: 0; /* Remove left margin */
       margin-bottom: 10px; /* Add space between items */
     }
+  }
+  .container {
+    display: flex; /* Use flexbox to align items */
+  }
+  
+  .content {
+    margin-left: 250px; /* Space for the sidebar */
+    padding: 20px; /* Padding for the main content */
+    flex-grow: 1; /* Allow the content to take up the remaining space */
   }
   

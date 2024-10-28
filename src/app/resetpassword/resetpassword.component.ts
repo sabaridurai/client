@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiserviceService } from '../apiservice.service';
 import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-resetpassword',
   standalone: true,
@@ -23,7 +23,7 @@ export class ResetpasswordComponent {
   signupPassword: string = '';
   confirmPassword: any;
 
-  constructor(private route: ActivatedRoute,private apicall:ApiserviceService,private router:Router) {}
+  constructor(private route: ActivatedRoute,private apicall:ApiserviceService,private router:Router,private auth:AuthService) {}
 
   ngOnInit(): void {
     // Get the 'token' parameter from the URL
@@ -54,10 +54,15 @@ export class ResetpasswordComponent {
       this.passwordError = 'Passwords do not match';
       return;
     }
+
+
+    // this.afAuth.confirmPasswordReset(this.token, this.newPassword)
+     
     this.apicall.reset_Password( this.token,this.signupEmail,this.confirmPassword).subscribe((result:any)=>{
       if(result)
       {
         if(result.success === "Password updated successfully"){
+
           // Handle success
           console.log('Password updated successfully:', result);
           alert('Password updated successfully');
@@ -82,6 +87,7 @@ export class ResetpasswordComponent {
         alert('An unexpected error occurred. Please try again.');
       }
     })
+
   }
   resetErrors() {
     this.emailError = '';

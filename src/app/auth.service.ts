@@ -10,7 +10,9 @@ import {
   ConfirmationResult, 
   RecaptchaVerifier, 
   signInWithPhoneNumber, 
-  createUserWithEmailAndPassword 
+  createUserWithEmailAndPassword,
+  confirmPasswordReset
+
 } from 'firebase/auth';
 import { environment } from '../environments/environment';
 
@@ -36,10 +38,15 @@ export class AuthService {
 
   constructor() {}
 
-  // Email and Password Registration
-  register(email: string, password: string) {
-    return createUserWithEmailAndPassword(this.auth, email, password);
+
+
+
+  changepassword(token:string,password:string)
+  {
+return confirmPasswordReset(this.auth,token,password)
   }
+
+
 
 
 // Email and password register

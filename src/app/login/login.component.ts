@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { ApiserviceService } from '../apiservice.service';
 import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { error } from 'console';
+import { response } from 'express';
 
 @Component({
   selector: 'app-login',
@@ -22,8 +23,8 @@ import { error } from 'console';
 })
 export class LoginComponent {
   // phoneNumber: string = '';
-  verificationCode: string = ''; // OTP
-  showOTPForm: boolean = false;
+  // verificationCode: string = ''; // OTP
+  // showOTPForm: boolean = false;
   showSignUpCard: boolean = false;
 userRole:any=[]
 
@@ -33,7 +34,7 @@ roleModalVisible = false;
 
   isSignIn = true; // Default to Sign In
   isSignUp = false;
-  isforgotvisible=true
+  isforgotvisible=false
 
 
 
@@ -86,7 +87,7 @@ roleModalVisible = false;
 
   onSubmit() {
     // Handle sign in logic
-    console.log('Signing in with:', this.email, this.password);
+    // console.log('Signing in with:', this.email, this.password);
     if (!this.email || !this.password) {
       this.login_error = 'All fields are required';
       return;
@@ -97,22 +98,34 @@ roleModalVisible = false;
       this.login_error = 'Invalid email format';
       return;
     }
-    this.authService.signIn(this.email,this.password)
-      .then((userCredential) => {
-        console.log("Login successful:", userCredential.user);
-      })
-      .catch((error) => {
-        if (error.code === 'auth/user-not-found') {
-          alert("No account found with this email. Please sign up.");
-        } else if (error.code === 'auth/wrong-password') {
-          alert("Incorrect password. Please try again.");
-        } else {
-          alert("An error occurred: " + error.message);
+    this.apicall.login(this.email, this.password).subscribe((response:any)=>{
+      if(response)
+      {
+        // console.log("response",response);
+        sessionStorage.setItem('displayName', response.name || 'Guest'); // Default value if null
+        sessionStorage.setItem('loginoption', response.loginOption)
+        sessionStorage.setItem('Role',response.role)
+        alert("Login successful.");
 
-          // An error occurred: Firebase: Error (auth/invalid-credential).
+        this.router.navigate(['/home']);
+
+      }
+
+    },(error:HttpErrorResponse)=>{
+      console.log("error",error)
+      
+      if (error.status === 500) {
+        alert('Internal server error. Please try again later.')
+      } else if (error.status === 401) {
+        if (error.error.error === 'Email does not exist.') {
+          alert('Email does not exist. Please check or register.')
+        } else if (error.error.error === 'Incorrect password.') {
+          alert('Incorrect password. Please try again.')
         }
-      });
+      }
+      
 
+    })
 
 
 
@@ -154,6 +167,8 @@ roleModalVisible = false;
   {
     this.resetErrors(); // Clear previous errors before checking
 
+    // console.log("llll",this.confirmPassword.length);
+    
     // Check if any field is empty
     if (!this.username || !this.signupEmail || !this.signupPassword || !this.confirmPassword) {
       this.fieldError = 'All fields are required';
@@ -176,77 +191,25 @@ roleModalVisible = false;
       this.roleError = 'Please select a role';
       return;
     }
+    if(this.confirmPassword.length<6)
+    {
+      this.fieldError = 'Password must be at least 6 characters long.';;
+      return;
+    }
 
 
-    // If all checks pass, proceed with the sign-up process
-    // console.log('Form is valid. Proceed with sign-up.',this.username, this.signupEmail,this.selectedRole, false,"own",this.confirmPassword);
-
-
-
-    // this.apicall.insert_user( this.username, this.signupEmail,this.selectedRole, false,"own",this.confirmPassword).subscribe((result:any)=>{
-    //   if(result)
-    //   {
-
-        
-    //     this.authService.createEmail(this.signupEmail,this.confirmPassword).then((userCredential) => {
-    //       console.log("Login successful:", userCredential.user);
-    //     })
-    //     .catch ((error)=>{
-    //       if (error.code === 'auth/email-already-in-use') {
-           
-    //       } else {
-    //         alert("An error occurred: " + error.message);
-    //       }
-    //     })
-
-
-    //     console.log("result",result)
-    //     if(result.message==="Email already exists")
-    //     {
-
-    //     }
-
-    //     alert('You have successfully registered. Please sign in.');
-    //     this.submit_btn_visibl=!this.submit_btn_visibl
-
-    //   }
-
-    // },(error:HttpErrorResponse)=>{
-    //   if (error.status === 500) {
-    //     alert('Internal server error. Please try again later.');
-    //   } else {
-    //     alert('An unexpected error occurred. Please try again.');
-    //   }
-    // })
-
+    if(this.confirmPassword.length>=6)
+      {
 
     this.apicall.insert_user(this.username, this.signupEmail, this.selectedRole, false, "own", this.confirmPassword).subscribe(
       (result: any) => {
-        if (result) {
-          // Check if the email already exists in MySQL
-          if (result.message === "Email already exists") {
-            alert("Email already exists in MySQL database. Please try logging in.");
-            return; // Stop further processing if the email already exists in MySQL
-          }
-    
+        if (result) {  
           // Proceed to create user in Firebase
-          this.authService.createEmail(this.signupEmail, this.confirmPassword).then((userCredential) => {
-            console.log("Registration successful:", userCredential.user);
-    
             // After successful Firebase registration, you can proceed with any further logic here
             alert('You have successfully registered. Please sign in.');
             this.submit_btn_visibl = !this.submit_btn_visibl;
-          })
-          .catch((error) => {
-            if (error.code === 'auth/email-already-in-use') {
-              // If email already in use, notify the user
-              alert("Email already exists in Firebase. Please try logging in.");
-            } else {
-              // Handle other Firebase errors
-              alert("An error occurred: " + error.message);
-            }
-          });
-        }
+         
+       }
       },
       (error: HttpErrorResponse) => {
         // Handle server errors
@@ -259,7 +222,7 @@ roleModalVisible = false;
     );
     
 
-
+  }
 
 
   }
@@ -278,15 +241,12 @@ roleModalVisible = false;
     this.authService. googleSignIn().then(result => {
       if(result)
       {
-        console.log("User signed in successfully: ", result);
+        // console.log("User signed in successfully: ", result);
         // Handle successful login, e.g., redirect to another page
-        sessionStorage.setItem('displayName', result.user.displayName || 'Guest'); // Default value if null
-
-        // Optionally store other user information
+        sessionStorage.setItem('displayName', result.user.displayName || 'Guest'); // Default value if nul
         sessionStorage.setItem('uid', result.user.uid);
         sessionStorage.setItem('email', result.user.email || ''); // Default to empty string if null
         sessionStorage.setItem('photoURL', result.user.photoURL || ''); // Default to empty string if null
-        sessionStorage.setItem('displayName',result.user.displayName||'')
         sessionStorage.setItem('emailVerified', JSON.stringify(result.user.emailVerified))
         
 
@@ -380,7 +340,7 @@ roleModalVisible = false;
           
   
       },(error:any)=>{
-        console.log("))))",error)
+        console.log(error)
       })
     }
     else{
