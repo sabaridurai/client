@@ -101,13 +101,13 @@ roleModalVisible = false;
     this.apicall.login(this.email, this.password).subscribe((response:any)=>{
       if(response)
       {
-        // console.log("response",response);
+        console.log("response",response);
         sessionStorage.setItem('displayName', response.name || 'Guest'); // Default value if null
         sessionStorage.setItem('loginoption', response.loginOption)
         sessionStorage.setItem('Role',response.role)
         alert("Login successful.");
 
-        this.router.navigate(['/home']);
+        this.router.navigate(['/afterlogin']);
 
       }
 
@@ -260,7 +260,7 @@ roleModalVisible = false;
           this.newuserstatus();          
         }
         else{
-          this.router.navigate(['/home']);
+          this.router.navigate(['afterlogin']);
         }
 
 
@@ -334,7 +334,7 @@ roleModalVisible = false;
         }
         else if(result.message=="Data added successfully")
         {
-          this.router.navigate(['/home']);
+          this.router.navigate(['afterlogin']);
         }
           }
           
