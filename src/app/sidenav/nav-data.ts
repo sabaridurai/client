@@ -5,29 +5,27 @@ import { INavbarData } from "./helper";
 
 export const navbarDataAdmin: INavbarData[] = [
     {
-        routeLink: '/afterlogin/admindashboard',
-        icon: 'fal fa-home',
+        routeLink: '/afterlogin/home',
+        icon: 'fas fa-home', // Changed to 'fas' for solid icons
         label: 'Home'
     },
-   
     {
-        routeLink: '/afterlogin/software_admin_dashboard_user_manage',
-        icon: 'fal fa-user',
-        label: 'User Management'
-    },
-    
-    {
-        routeLink: 'pages',
-        icon: 'fal fa-file',
-        label: 'pages'
+        routeLink: '/afterlogin/additem',
+        icon: 'fas fa-plus', // Changed to 'fas'
+        label: 'Add Item'
     },
     {
-        routeLink: 'media',
-        icon: 'fal fa-camera',
-        label: 'admin'
+        routeLink: '/pages', // Ensure this is a valid route
+        icon: 'fas fa-file', // Changed to 'fas'
+        label: 'Pages' // Capitalized for consistency
     },
-    
+    {
+        routeLink: '/media', // Ensure this is a valid route
+        icon: 'fas fa-camera', // Changed to 'fas'
+        label: 'Admin' // Consider renaming for clarity
+    },
 ];
+
 export function getNavbarData(User: String): INavbarData[] {
 console.log("**&&&&&&&&"+User)
 

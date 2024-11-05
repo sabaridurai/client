@@ -1,0 +1,25 @@
+<!-- body.component.html -->
+<div class="bg-gray">
+    <div class="container-fluid mt-4"> <!-- Changed to container-fluid -->
+        <div class="row">
+            <div class="col-md-4 mb-3" *ngFor="let item of items">
+                <div class="card h-100">
+                    <img src="https://picsum.photos/200" class="card-img-top" alt="Placeholder Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Card Title</h5>
+                        <p class="card-text">This is a simple card description. Add more details here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating Button -->
+    <div class="message-button position-fixed bottom-0 end-0 m-3" (click)="onButtonClick()">
+        <button class="btn siri-hover rounded-circle d-flex  justify-content-center align-items-center" 
+                style="width: 60px; height: 60px; position: relative;">
+            <img src="assets/robot.svg" alt="Robot Icon" style="width: 40px; height: 40px;">
+        </button>
+        <div class="message-tail"></div>
+    </div>
+</div>

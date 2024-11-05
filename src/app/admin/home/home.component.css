@@ -1,0 +1,10 @@
+app-header {
+
+
+    display: flex;
+    height: 45px; 
+    align-items: center; /* Align items vertically in the middle */
+    
+  }
+
+  

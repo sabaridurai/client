@@ -6,20 +6,30 @@
   
   .content-container {
     height: 100%;
+    margin: 0;
+    padding: 0;
   }
   
   .sidebar {
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
     background-color: #f0f0f0;
     border-right: 1px solid #ccc;
     transition: width 0.3s;
-  }
+    border-top-right-radius: 15px; /* Top-right corner radius */
+    z-index: 10; /* Ensure it's on top */
+}
+
+
   
   .collapsed .sidebar {
     width: 50px; /* Adjust the width as needed when collapsed */
   }
   
   .main-content {
-    padding: 16px;
+    // padding: px;
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
   }
   
   @media screen and (max-width: 600px) {
@@ -33,4 +43,6 @@
       width: 100%; /* Adjust the width as needed when collapsed on small screens */
     }
   }
+  
+
   

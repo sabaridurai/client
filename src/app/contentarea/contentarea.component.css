@@ -1,0 +1,52 @@
+/* Reset margins and padding */
+body, .container, .row, .card {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* Prevent overflow and gaps */
+html, body {
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+    margin: 0; /* Reset margins */
+}
+
+.bg-gray {
+    margin: 0; /* Remove margin for the main background */
+    padding: 0; /* Remove padding if any */
+}
+
+
+
+/* Base button styling */
+.message-button {
+    position: relative;
+    display: inline-block;
+}
+
+.message-tail {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid #465EA6; /* Match button color */
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Continuous animation */
+.siri-hover {
+    background-color: #ffffffcd; /* Cyan as the base color */
+    animation: siriColorCycle 2s infinite alternate; /* Continuous color cycle animation */
+}
+
+@keyframes siriColorCycle {
+    0% { box-shadow: 0 0 8px 8px #ff4b5daf; } /* Red shadow */
+    25% { box-shadow: 0 0 10px 12px #ffb9089d; } /* Yellow shadow */
+    50% { box-shadow: 0 0 15px 17px #4ecca2ad; } /* Green shadow */
+    75% { box-shadow: 0 0 20px 22px #38a2db6c; } /* Blue shadow */
+    100% { box-shadow: 0 0 25px 27px #ff4b5d79; } /* Return to Red shadow */
+}

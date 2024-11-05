@@ -1,19 +1,17 @@
 
 
-<div fxLayout="column" fxLayoutAlign="start stretch" class="container">
-    <app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
-  
+<div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="0px" class="container">
+
     <div fxLayout="row" fxLayout.xs="column" class="content-container">
-      <div fxFlex="30%" fxFlex.xs="100%" class="sidebar" [class.collapsed]="isSideNavCollapsed">
+      <div fxFlex="30%" fxFlex.xs="100%" class="sidebar" [class.collapsed]="isSideNavCollapsed" *ngIf="issidenav==true">
         <!-- Sidebar content goes here -->
+        <app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
       </div>
   
       <div fxFlex="70%" fxFlex.xs="100%" class="main-content">
-        <app-body [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth">
-          <router-outlet></router-outlet>
-          <router-outlet name="forunit_details"></router-outlet>
-         
+        <app-body [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth">       
         </app-body>
+        
       </div>
     </div>
   </div>

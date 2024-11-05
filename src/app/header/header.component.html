@@ -1,15 +1,96 @@
-<!-- header.component.html -->
-<header class="header">
-    <div class="logo">
-      <h1>Your Logo</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <div class="container-fluid m-0">
+      <!-- Navbar toggler for mobile view -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Search Bar on the left -->
+      <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex" style="width: 240px;">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <button type="submit" class="btn btn-search pe-1">
+              <i class="fa fa-search search-icon"></i>
+            </button>
+          </div>
+          <input type="text" placeholder="Search ..." class="form-control" />
+        </div>
+      </nav>
+  
+      <div class="collapse navbar-collapse justify-content-between w-100" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center"> <!-- Added align-items-center here -->
+          <li class="nav-item me-2">
+            <div class="nav-link p-0" (click)="toggleFullscreen()" style="display: flex; align-items: center;"> <!-- Use flex for alignment -->
+              <i class="fa" [ngClass]="isFullscreen ? 'fa-compress' : 'fa-expand'" style="font-size: 1em;"></i> <!-- Increased icon size -->
+            </div>
+          </li>
+  
+          <li class="nav-item dropdown me-2">
+            <a class="nav-link" href="#" id="settingsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-bell" aria-hidden="true" style="font-size: 1em;"></i> <!-- Increased icon size -->
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
+              <li class="p-2">Notifications</li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li *ngIf="isNotificationEmpty">
+                <a class="dropdown-item" href="#">
+                  <i class="fa fa-bell me-2"></i> You have new notifications
+                </a>
+              </li>
+              <li *ngIf="!isNotificationEmpty">
+                <a class="dropdown-item" href="#">
+                  <i class="fa fa-info-circle me-2"></i> No notifications
+                </a>
+              </li>
+            </ul>
+          </li>
+  
+          <li class="nav-item me-2">
+            <div class="nav-link d-flex align-items-center">
+              <img src="https://picsum.photos/200" alt="Description" class="me-2 rounded-circle" style="width: 30px; height: 30px; object-fit: cover;"> <!-- Ensures image is round and fits well -->
+              <span>{{LoginedName}}</span>
+            </div>
+          </li>
+  
+          <li class="nav-item dropdown me-2">
+            <a class="nav-link" href="#" id="settingsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-ellipsis-v" aria-hidden="true" style="font-size: 1em;"></i> <!-- Increased icon size -->
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
+              <li>
+                <a class="dropdown-item" href="#">
+                  <i class="fa fa-user me-2"></i> Profile
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  <i class="fa fa-lock me-2"></i> Security
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  <i class="fa fa-bell me-2"></i> Notifications
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  <i class="fa fa-cog me-2"></i> Settings
+                </a>
+              </li>
+              <li>
+                <div class="dropdown-item" (click)="OnLogout()">
+                  <i class="fa fa-sign-out-alt me-2"></i> Logout
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  </nav>
   
